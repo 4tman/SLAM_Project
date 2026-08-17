@@ -1,0 +1,10 @@
+# ROS2 workspace artefacts
+build/
+install/
+log/
+
+# colcon logs
+colcon-core.log
+test_results/
+
+*.pdf
