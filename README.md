@@ -88,7 +88,7 @@ ros2 run nav2_map_server map_server --ros-args -p yaml_filename:=my_map.yaml
 
 ## Автор
 
-[Твоё имя или GitHub username]
+4t
 
 ## Лицензия
 
