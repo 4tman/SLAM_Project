@@ -28,8 +28,7 @@ SLAM_PROJECT/
 - Ubuntu 22.04
 - ROS 2 Humble
 - `colcon`
-- [Укажи используемый SLAM-пакет: slam_toolbox / Cartographer / другой]
-- [Укажи используемый лидар или источник данных]
+- SLAM-пакет: slam_toolbox
 
 ## Сборка
 
@@ -55,11 +54,27 @@ source install/setup.bash
 
 [Напиши здесь точную команду, которой ты запускаешь проект.]
 
-Пример:
+1 Окно(запуск симуляционной среды Gazebo):
 
 ```bash
-ros2 launch robot_description [имя_launch_файла].launch.py
+gz sim src/robot_description/urdf/robot.urdf
 ```
+2 Окно(запуск 3д визуализации в Rviz2):
+```bash
+ros2 launch robot_description two_wheel_launch.launch.py 
+```
+3 Окно(запуск конфиг файлов мостов gz-ros2(в разработке, сейчас запускается каждое окно отдельно))
+
+4 Окно(запуск tf2)
+```
+ros2 run robot_description tf2_trans
+```
+
+5 Окно (slam toolbox)
+```bash
+ros2 run slam_toolbox async_slam_toolbox_node
+```
+!Управление происходит за счет teleop в рос2 и моста в газебовский топик cmd_vel
 
 ## Карта
 
@@ -84,8 +99,9 @@ ros2 run nav2_map_server map_server --ros-args -p yaml_filename:=my_map.yaml
 - [x] Настроен рабочий SLAM узел 
 - [x] Подключён и проверен источник данных лидара
 - [ ] Структурированы необходимые для работы ноды
+- [ ] Разработан конфиг файл для запуска всех мостов
+- [ ] написан единый лаунч для запуска "1 кнопкой"
 - [ ] Настроена Nav2-навигация
-- [ ] Добавлена документация по запуску
 
 ## Автор
 
