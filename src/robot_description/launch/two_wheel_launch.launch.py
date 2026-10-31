@@ -172,11 +172,11 @@ def generate_launch_description():
     # Собираем всё в LaunchDescription
     return LaunchDescription([
         rsp_node,
-        #ros2_control_node,
+        ros2_control_node,
         joint_state_spawner,
-        diff_drive_spawner,
-        joint_state_publisher_node,
+        #diff_drive_spawner,  #разобраться со всеми нодами и их назначениями
+                              #/конфилктами между собой
+        joint_state_publisher_node, #разобраться с дифф драйв и контроллером, чтобы запускалось все одним лаунч файлом
         rviz_node,
         tf2_trans_node,
     ])
-

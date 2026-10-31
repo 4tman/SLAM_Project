@@ -28,8 +28,7 @@ SLAM_PROJECT/
 - Ubuntu 22.04
 - ROS 2 Humble
 - `colcon`
-- [Укажи используемый SLAM-пакет: slam_toolbox / Cartographer / другой]
-- [Укажи используемый лидар или источник данных]
+- SLAM-пакет: slam_toolbox
 
 ## Сборка
 
@@ -55,11 +54,35 @@ source install/setup.bash
 
 [Напиши здесь точную команду, которой ты запускаешь проект.]
 
-Пример:
+1 Окно(запуск симуляционной среды Gazebo):
 
 ```bash
-ros2 launch robot_description [имя_launch_файла].launch.py
+gz sim src/robot_description/urdf/robot.urdf
 ```
+
+2 Окно(запуск 3д визуализации в Rviz2):
+```bash
+ros2 launch robot_description two_wheel_launch.launch.py 
+```
+
+3 Окно(запуск конфиг файлов мостов gz-ros2(скорость время лидар))
+```bash
+ros2 run ros_gz_bridge parameter_bridge \
+  --ros-args \
+  -p config_file:=$HOME/slam_project/src/robot_description/config/gz_bridge.yaml
+```
+
+4 Окно(запуск tf2)
+```
+ros2 run robot_description tf2_trans
+```
+
+5 Окно (slam toolbox)
+```bash
+ ros2 launch slam_toolbox online_async_launch.py use_sim_time:=true
+```
+
+!необходимо в рвизе добавить фрейм map (из вкладки by topic)
 
 ## Карта
 
@@ -81,17 +104,16 @@ ros2 run nav2_map_server map_server --ros-args -p yaml_filename:=my_map.yaml
 - [x] Создан ROS 2 workspace
 - [x] Добавлено описание робота
 - [x] Сохранена тестовая SLAM-карта
-- [ ] Подключён и проверен источник данных лидара
-- [ ] Настроен SLAM-узел
+- [x] Настроен рабочий SLAM узел 
+- [x] Подключён и проверен источник данных лидара
+- [x] Последовательно структурированы необходимые для работы ноды
+- [x] Разработан конфиг файл для запуска всех мостов
+- [ ] Все ноды упакованы в единый лаунч файл
+- [ ] написан единый лаунч для запуска "1 кнопкой"
 - [ ] Настроена Nav2-навигация
-- [ ] Добавлена документация по запуску
 
 ## Автор
 
 4t
 
 ## Лицензия
-
-[Выбери лицензию позже: MIT, Apache-2.0, GPL-3.0 или укажи, что проект пока без лицензии.]
-
-#потом доделаю
