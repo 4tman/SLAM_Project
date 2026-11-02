@@ -91,6 +91,12 @@ ros2 run robot_description tf2_trans
 - `my_map.pgm` — изображение occupancy grid map
 - `my_map.yaml` — параметры карты: разрешение, origin, пороговые значения и ссылка на `.pgm`
 
+для сохранения собственной карты
+```bash
+ ros2 run nav2_map_server map_saver_cli \
+  -f "$HOME/slam_project/2map"
+```
+
 Для использования карты в Nav2:
 
 ```bash
